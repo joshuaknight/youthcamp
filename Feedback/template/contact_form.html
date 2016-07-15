@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+    Contact
+{% endblock %}
+{% block content %}
+<form class = "comment"action = '' method = 'post' > 
+{% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+<input type = 'submit' value = 'POST'>
+</form>
+{% endblock %}
+
+{% block footer %}
+<a href = "/all">All Feedbacks</a>  
+<br /><br />
+<hr>
+</p>
+<a href="/">Home</a>
+{% endblock %}

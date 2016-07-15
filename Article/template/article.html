@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+{% block title %}
+Article
+{% endblock %}
+{% block content %}
+<form class="" action="" method = 'post'>
+{% csrf_token %}
+    {{ formset.management_form }}
+    <table >
+        {% for form in formset %}
+        {{ form.as_table }}
+        {% endfor %}
+    </table>
+    <input type="submit" value="CREATE">
+    <input type="reset" value="RESET">
+</form>
+{% endblock %}
+{% block footer %}
+<hr />
+<a href="/dis_article">Display Article</a>
+{% endblock %}

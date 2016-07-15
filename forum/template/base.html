@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+ <title>{% block title %}Home{% endblock %}</title>
+{% load static %}
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{% static '/forum/style.css' %}">
+<link rel="stylesheet" href="{% static '/forum/contact.css' %}">
+</head>
+<body>
+ <h1><center>Youth Camp</h1><center>
+ <p>Current Time : {{ now }}</p>
+ <div class="field">
+        <a href="/">Home </a>
+	 	<a href="/contact">Contact</a>
+		<a href="/feedback">Feedback</a>
+		<a href="/registration">Registration</a>
+		<a href="/article">Create Article</a>
+		<a href="/accounts/login">Login</a>
+		<a href="/accounts/register">SignUp</a>
+
+</div>
+ {% block header %}
+ {% endblock %}
+ {% block content %}
+ {% endblock %}
+ {% block footer %}
+ {% endblock %}
+</body>
+</html>

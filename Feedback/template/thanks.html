@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Feedback
+{% endblock %}
+{% block content %}
+<div class="displayforum">
+	{% for i in name %}
+	{% for j in i %}
+	<div class="makeup">
+	<p>{{j}}</p>
+	</div>
+	{% endfor %}
+	{% endfor %}
+</div>
+
+<a href="/feedback">Go Back</a>
+{% endblock %}
+{% block footer %}
+<hr>
+<a href="/">Home</a>
+{% endblock %}

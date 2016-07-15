@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Contact
+{% endblock %}
+{% block content %}
+{% load static %}
+	<form class="submission" action="" method="post">
+		{% csrf_token %}
+		<table>
+		{{ form.as_table }}
+		</table>
+		<input type="submit" value="SEND">
+		<input type="reset" value="RESET">
+	</form>
+{% endblock %}
+
+{% block footer %}
+<hr >
+<br />
+<a href="/">Home</a>
+{% endblock %}

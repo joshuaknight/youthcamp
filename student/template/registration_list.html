@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    <h2>Registered Users</h2>
+    <div class="Registration">
+    <ol>
+    Total Number of Registrations : {{ name_count }}
+    <br /><br />
+        {% for list in object_list %}
+            <li>{{ list }}</li>
+            {% endfor %}
+           <br /> <br /> 
+           <!-- Number of <a href = "#" >Male</a>:{{men}}
+       	<br />
+           Number of <a href="#">Female </a>:{{women}} -->
+    </ol>
+    </div>
+{% endblock %}

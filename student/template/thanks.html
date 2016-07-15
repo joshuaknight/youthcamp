@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Feedback
+{% endblock %}
+{% block content %}
+<p>
+	Name     :{{forum.as_p}} <br /><br />
+	Subject  :{{subject}} <br /><br />
+	Feedback :{{feedback}} <br /><br />
+	</p>
+{% endblock %}
+{% block footer %}
+<hr>
+<a href="/">Home</a>
+{% endblock %}

@@ -1,0 +1,69 @@
+from django.db import models 
+from django.core import validators
+import re
+from django.core.exceptions import ValidationError
+
+def validate_name(value,length=5):
+	regex = r"([a-zA-Z])"
+	if (len(str(value)) <= length or not re.search(regex,value)):
+    		raise ValidationError(u'%s is not a Valid Name' % value)
+
+
+FAITH_CHOICE = {
+	('others','others'),
+	('Coimbatore','Coimbatore'),
+	('Chennai','Chennai'),
+	('Erode','Erode')
+}
+GENDER_CHOICE = {
+	('Male','Male'),
+	('Female','Female'),
+	('Others','Others')
+}
+Annual_Choice = {
+	('1000 - 50,000','1000 - 50,000'),
+	('50,000 - 1,00,000','50,000 - 1,00,000'),
+	('1,00,000 - 5,00,000','1,00,000 - 5,00,000'),
+	('5,00,000 - 10,00,000','5,00,000 - 10,00,000')
+}
+class NameManager(models.Manager):
+    def get_queryset(self):
+        return super(NameManager ,self).get_queryset().count()
+
+class MaleManager(models.Manager):
+  	def get_queryset(self):
+  		return super(MaleManager, self).get_queryset().filter(gender = 'Male').count()
+
+class Namelist(models.Manager):
+	def get_queryser(self):
+		return super(Name, self).get_queryset().add(full_name)
+
+class FemaleManager(models.Manager):
+	def get_queryset(self):
+		return super(FemaleManager ,self).get_queryset().filter(gender ='Female').count()
+		
+class Registration(models.Model):
+	first_name = models.CharField(validators = [validate_name],max_length=20)
+	last_name = models.CharField(validators = [validate_name],max_length = 20)
+	father_name = models.CharField(validators = [validate_name],max_length = 20)
+	mother_name = models.CharField(validators = [validate_name],max_length = 20)
+	annual_income = models.CharField(max_length=100)
+	date_of_birth = models.DateField()
+	gender = models.CharField(max_length=10)
+	faith_home = models.CharField(max_length=20)
+	every = models.Manager()
+	name_count = NameManager()
+	name_list = Namelist()
+	men = MaleManager()
+	women = FemaleManager()
+	
+	def _get_full_name(self):
+		"Returns the person's full name"
+		def __str__(self):
+   			return '%s%s' % (self.first_name, self.last_name)
+
+	full_name = property(_get_full_name)		
+
+	def __str__(self):
+		return '%s %s'%(self.first_name,self.last_name)
+	 
