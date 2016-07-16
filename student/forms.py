@@ -18,9 +18,13 @@ class RegisForm(ModelForm):
 				 	'annual_income':forms.Select(choices=Annual_Choice),
 					'date_of_birth' : AdminDateWidget
 					}
-		help_text = {
-						'date_of_birth' : _('YYYY-MM-DAY')
-						}	
+		help_texts = {
+					'first_name'	: _('eg:\'joshua\''),
+					'last_name':_("eg:'knight'"),
+					'annual_income':('eg:12 * monthly salary'),
+					'date_of_birth' : _('eg:\'YYYY-MM-DAY\''),
+					'faith_home'	: _('eg:location')
+					}	
 	
 
 

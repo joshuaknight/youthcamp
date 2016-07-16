@@ -20,7 +20,7 @@ def Give_Feedback(request,name='all'):
             for i in formset:
                 i.save()
         	return HttpResponseRedirect('/')
-    return render(request,'contact_form.html',{'form':formset,'now':now})         
+    return render(request,'contact_form.html',{'formset':formset,'now':now})         
 
 #class display_feedback(TemplateView):
  #   template_name = 'thanks.html'

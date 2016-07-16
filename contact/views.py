@@ -18,4 +18,4 @@ def contact(request):
 			for i in formset:
 				i.save()
 			return HttpResponseRedirect('/')
-	return render(request,"contact.html",{'form':formset})
+	return render(request,"contact.html",{'formset':formset})

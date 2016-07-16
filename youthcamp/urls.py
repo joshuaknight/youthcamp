@@ -13,25 +13,25 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^test/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/',test),
 ]
-contact = [url(r'^contact/$',contact),]
+contact = [url(r'^contact/$',contact,name='contact'),]
 
 home = [url(r'^$',home_page.as_view(),name='home'),]
 
 login =[#url(r'^accounts/login/$',Login.as_view()),
-        url(r'^accounts/login/$',login_view),
+        url(r'^accounts/login/$',login_view,name='login'),
         url(r'^accounts/logout/$',logout_view),]
 
-register = [url(r'^accounts/register/$',signup),
+register = [url(r'^accounts/register/$',signup,name='signup'),
 			url(r'^accounts/register_success/$',register_success)]        
 
-registration = [url(r'^registration$',registration),]
+registration = [url(r'^registration$',registration,name='register'),]
                 #url(r'^(?P<faith_home>[-_\w]+)/$', registered_user.as_view(), name='first_name'),]
                 #url(r'^registereduser/$',registered_user.as_view(),name = 'article')]
 
-feedback = [url(r'^feedback/$',Give_Feedback),]
+feedback = [url(r'^feedback/$',Give_Feedback,name='feedback'),]
             #url(r'all/$',display_feedback.as_view(),name='display_feedback'),]
 
-article = [url(r'^article/$',article),]
+article = [url(r'^article/$',article,name='article'),]
             #url(r'^article_dis/$',redirect.as_view(),name='article-detail')]
 
 urlpatterns += home

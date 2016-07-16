@@ -23,7 +23,7 @@ def registration(request):
 			for form in formset:
 				form.save()
 			return HttpResponseRedirect('/')
-	return render(request,'registration.html',{'form' : formset,'now':now})
+	return render(request,'registration.html',{'formset' : formset,'now':now})
 
 
 

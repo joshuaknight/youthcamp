@@ -25,7 +25,7 @@ def login_view(request):
 		else:
 			return render(request,unsuccess_url,{'full_name' : username})
 	else:
-		return render(request,template_name,{'form':form})
+		return render(request,template_name,{'formset':form})
 
 def logout_view(request):
 	logout(request)

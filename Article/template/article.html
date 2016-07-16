@@ -1,18 +1,16 @@
 {% extends "base.html"%}
+{% load bootstrap3 %}
 {% block title %}
 Article
 {% endblock %}
 {% block content %}
+{% bootstrap_formset_errors formset %}
 <form class="" action="" method = 'post'>
 {% csrf_token %}
     {{ formset.management_form }}
-    <table >
-        {% for form in formset %}
-        {{ form.as_table }}
-        {% endfor %}
-    </table>
-    <input type="submit" value="CREATE">
-    <input type="reset" value="RESET">
+    {% bootstrap_formset formset layout='horizontal' %} 
+    {% buttons submit='Create' reset="reset" button_size='lg' %}
+    {% endbuttons %}	
 </form>
 {% endblock %}
 {% block footer %}

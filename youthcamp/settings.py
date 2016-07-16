@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'contact',
     'Article',
     'Login',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [

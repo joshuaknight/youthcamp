@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load bootstrap3 %}
 {% block content %}
+{% bootstrap_form_errors form %}
 <form class = 'Registration' action = "/accounts/register/" method = "post">
 	{% csrf_token %}
-	<table>
-	{{ form.as_table }}
-	</table>
-	<input type="submit" value="REGISTER">
+	{% bootstrap_form form layout='horizontal'%}
+	{% buttons submit='SignUp' reset='reset'%}
+	{% endbuttons %}
 </form>
 {% endblock %}

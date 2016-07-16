@@ -2,24 +2,26 @@
 <head>
  <title>{% block title %}Home{% endblock %}</title>
 {% load static %}
+{% load bootstrap3 %}
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="{% static '/forum/style.css' %}">
-<link rel="stylesheet" href="{% static '/forum/contact.css' %}">
 </head>
 <body>
  <h1><center>Youth Camp</h1><center>
  <p>Current Time : {{ now }}</p>
- <div class="field">
-        <a href="/">Home </a>
-	 	<a href="/contact">Contact</a>
-		<a href="/feedback">Feedback</a>
-		<a href="/registration">Registration</a>
-		<a href="/article">Create Article</a>
-		<a href="/accounts/login">Login</a>
-		<a href="/accounts/register">SignUp</a>
-
+ <div class="container">
+ 	<h1>
+ 		<a href="{% url 'home' %}">
+ 		{% bootstrap_icon 'home' %}
+ 		</a>
+ 		<a href="{% url 'contact' %}">{% bootstrap_button 'Contact' %}</a>
+		<a href="{% url 'feedback' %}">{% bootstrap_button 'Feedback' %}</a>
+		<a href="{% url 'register' %}">{% bootstrap_button 'Registration' %}</a>
+		<a href="{% url 'article' %}">{% bootstrap_button 'Article' %}</a>
+		<a href="{% url 'login' %}">{% bootstrap_button 'LOGIN' %}</a>
+		<a href="{% url 'signup' %}">{% bootstrap_button 'SIGNUP' %}</a>
+		</h1>
 </div>
  {% block header %}
  {% endblock %}
