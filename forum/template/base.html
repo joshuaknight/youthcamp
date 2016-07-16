@@ -1,27 +1,52 @@
 <html lang="en">
 <head>
  <title>{% block title %}Home{% endblock %}</title>
-{% load static %}
+{% load staticfiles %}
+<!--
+<style type="text/css">
+         body { 
+         background: url('{% static "forum/ocean.jpg" %}') no-repeat center center fixed; 
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+        } 
+        
+        
+    .navbar-custom {
+    	color: green;
+    background-color: yellow;
+}
+</style>
+-->
 {% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?
+family=Lobster-subset=latin,latin-ext" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="text-Primary">
  <h1><center>Youth Camp</h1><center>
  <p>Current Time : {{ now }}</p>
- <div class="container">
+ <div class="navbar navbar-default " role="navigation">
+  <div class="container">
+    <div class="navbar-header">
  	<h1>
  		<a href="{% url 'home' %}">
  		{% bootstrap_icon 'home' %}
  		</a>
- 		<a href="{% url 'contact' %}">{% bootstrap_button 'Contact' %}</a>
-		<a href="{% url 'feedback' %}">{% bootstrap_button 'Feedback' %}</a>
-		<a href="{% url 'register' %}">{% bootstrap_button 'Registration' %}</a>
-		<a href="{% url 'article' %}">{% bootstrap_button 'Article' %}</a>
+ 		<a href="{% url 'contact' %}">{% bootstrap_button 'CONTACT' %}</a>
+		<a href="{% url 'feedback' %}">{% bootstrap_button 'FEEDBACK' %}</a>
+		<a href="{% url 'register' %}">{% bootstrap_button 'REGISTRATION' %}</a>
+		<a href="{% url 'article' %}">{% bootstrap_button 'ARTICLE' %}</a>
 		<a href="{% url 'login' %}">{% bootstrap_button 'LOGIN' %}</a>
 		<a href="{% url 'signup' %}">{% bootstrap_button 'SIGNUP' %}</a>
 		</h1>
+</div>
+</div>
 </div>
  {% block header %}
  {% endblock %}

@@ -8,7 +8,7 @@ Article
 <form class="" action="" method = 'post'>
 {% csrf_token %}
     {{ formset.management_form }}
-    {% bootstrap_formset formset layout='horizontal' %} 
+    {% bootstrap_formset formset layout='inline' %} 
     {% buttons submit='Create' reset="reset" button_size='lg' %}
     {% endbuttons %}	
 </form>
