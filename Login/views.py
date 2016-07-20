@@ -19,13 +19,13 @@ def login_view(request):
 	if request.method == 'POST':
 		username = post['username']
 		password = post['password']
-		user = authenticate(username=username,password=password)
+		user = AuthenticationFormcate(username=username,password=password)
 		if user is not None:
 			return render(request,success_url,{'full_name' : username})
 		else:
 			return render(request,unsuccess_url,{'full_name' : username})
 	else:
-		return render(request,template_name,{'formset':form})
+		return render(request,template_name,{'formset':form,'now':timezone.now()})
 
 def logout_view(request):
 	logout(request)
@@ -40,6 +40,7 @@ def signup(request):
 	args = {}
 	args.update(csrf(request))			
 	args['form'] = UserCreationForm()
+	args['now'] = timezone.now()
 	print args
 	return render(request,'register.html',args)	
 

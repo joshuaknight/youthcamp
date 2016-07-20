@@ -3,9 +3,19 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-<table>
-	{% for i in content %}
-	{{ i.as_table }}
+	Number of Article's Written {{ author_count }}
+	<br /><br />
+	<div class="panel panel-default">
+	<div class="container">
+	{% for i in article_name %} 
+	{% for x in i%}
+	<div class="list-group">
+	<a href="#">{{ x }}</a>
+	
+	<br /><br />
 	{% endfor %}
-	</table>
+	{% endfor %}
+	</div>
+	</div>
+	</div>
 {% endblock %}

@@ -34,4 +34,12 @@ def article(request):
 					return HttpResponseRedirect('/')
 	return render(request,'article.html',{'formset' : formset,'now':now})
 
+class display_article(TemplateView):
+	template_name = "disart.html"	
+
+	def get_context_data(self,**kwargs):
+		context= super(display_article,self).get_context_data(**kwargs)
+		context['author_count'] = New_Article.author_count.all()
+		context['article_name'] = New_Article.article_list.all()
+		return context
 

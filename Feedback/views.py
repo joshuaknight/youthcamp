@@ -1,4 +1,4 @@
-from django.views.generic.base import TemplateView
+from django.views.generic import ListView,DetailView
 from django.core.mail import send_mail 
 from django.http import *
 from django.shortcuts import render,RequestContext
@@ -19,14 +19,18 @@ def Give_Feedback(request,name='all'):
         if formset.is_valid():
             for i in formset:
                 i.save()
-        	return HttpResponseRedirect('/')
+        	return HttpResponseRedirect('/comment/all/')
     return render(request,'contact_form.html',{'formset':formset,'now':now})         
 
-#class display_feedback(TemplateView):
- #   template_name = 'thanks.html'
-#
- #   def get_context_data(self,**kwargs):
-  #      context = super(display_feedback,self).get_context_data(**kwargs)
-   #     context['name'] = Feedback.name.all()
-   #     return context   
-        #context_instance = RequestContext(request,processors=[custom_proc]))
+class display_feedback(ListView):
+    template_name = 'thanks.html'
+    model = Feedback
+
+    def get_context_data(self,**kwargs):
+        context = super(display_feedback,self).get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        context['date'] = Feedback.objects.all().values_list('Date')
+        context['name'] = Feedback.count.all()
+        context['name_list'] = Feedback.name_list.all()
+        context['message_list'] = Feedback.message_list.all()
+        return context   

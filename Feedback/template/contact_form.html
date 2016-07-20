@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% block title %}
-    Contact
+    Comment
 {% endblock %}
 {% block content %}
 {% bootstrap_formset_errors formset %}
@@ -9,13 +9,13 @@
 {% csrf_token %}
 	{{ formset.managment_form }}
     {% bootstrap_formset formset layout='horizontal' %}
-	{% buttons submit='GiveFeedback' reset='reset'%}
+	{% buttons submit='GiveFeedback' reset='reset' %}
 	{% endbuttons %}
 </form>
 {% endblock %}
 
 {% block footer %}
-<a href = "/all">All Feedbacks</a>  
+<a href = "{% url 'display_comment' %}">All Comments</a>  
 <br /><br />
 <hr>
 </p>

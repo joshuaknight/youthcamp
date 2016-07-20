@@ -1,18 +1,23 @@
 {% extends "base.html" %}
- 
+{% load bootstrap3 %}
 {% block content %}
     <h2>Registered Users</h2>
-    <div class="Registration">
-    <ol>
-    Total Number of Registrations : {{ name_count }}
-    <br /><br />
-        {% for list in object_list %}
-            <li>{{ list }}</li>
-            {% endfor %}
-           <br /> <br /> 
-           <!-- Number of <a href = "#" >Male</a>:{{men}}
-       	<br />
-           Number of <a href="#">Female </a>:{{women}} -->
-    </ol>
+    <div class="container">
+    <div class="panel panel-default">
+    <span>Total Number of Registrations : {{ name_count }}</span>
+    <div class="container"> 
+      <span class="container">Number of Male Registrations {{men}}</span>
+      <span class="container">Number of Women Registrations {{women}}</span>
+      {% for i in list %}
+      {{ i }}
+      {% endfor %}
     </div>
+    </div>
+    </div>
+{% endblock %}
+{% block footer %}
+<a href="{% url 'register' %}">
+{% buttons submit='Register Again'%}
+{% endbuttons %}
+</a>
 {% endblock %}

@@ -18,7 +18,10 @@
 
 {% block footer %}
 <div class="footer">
-<a href="/registereduser">RegisterdUsers</a>
+<a href=" {% url 'registered' %}">
+{% buttons submit='RegisteredUsers' %}
+{% endbuttons %}
+</a>
 <hr style="color:black; border:2px solid white;">
 <p > <strong>* All Fields are Required</strong> </p>
 <p ><strong> * The Above Details Should Be Furnished and True to Your knowledge	</strong></p>

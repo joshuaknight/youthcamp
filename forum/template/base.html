@@ -2,34 +2,16 @@
 <head>
  <title>{% block title %}Home{% endblock %}</title>
 {% load staticfiles %}
-<!--
-<style type="text/css">
-         body { 
-         background: url('{% static "forum/ocean.jpg" %}') no-repeat center center fixed; 
-         -webkit-background-size: cover;
-         -moz-background-size: cover;
-         -o-background-size: cover;
-         background-size: cover;
-        } 
-        
-        
-    .navbar-custom {
-    	color: green;
-    background-color: yellow;
-}
-</style>
--->
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link href="//fonts.googleapis.com/css?
-family=Lobster-subset=latin,latin-ext" rel="stylesheet" type="text/css">
 </head>
 <body class="text-Primary">
- <h1><center>Youth Camp</h1><center>
+ <h1>
+ <center>
+ <a href="{% url 'home' %}">Youth Camp</a>
+ </h1><center>
  <p>Current Time : {{ now }}</p>
  <div class="navbar navbar-default " role="navigation">
   <div class="container">
@@ -39,7 +21,7 @@ family=Lobster-subset=latin,latin-ext" rel="stylesheet" type="text/css">
  		{% bootstrap_icon 'home' %}
  		</a>
  		<a href="{% url 'contact' %}">{% bootstrap_button 'CONTACT' %}</a>
-		<a href="{% url 'feedback' %}">{% bootstrap_button 'FEEDBACK' %}</a>
+		<a href="{% url 'comment' %}">{% bootstrap_button 'COMMENT' %}</a>
 		<a href="{% url 'register' %}">{% bootstrap_button 'REGISTRATION' %}</a>
 		<a href="{% url 'article' %}">{% bootstrap_button 'ARTICLE' %}</a>
 		<a href="{% url 'login' %}">{% bootstrap_button 'LOGIN' %}</a>
@@ -51,6 +33,10 @@ family=Lobster-subset=latin,latin-ext" rel="stylesheet" type="text/css">
  {% block header %}
  {% endblock %}
  {% block content %}
+ {{ message }}
+ {% for i in author_name %}
+ 	{{i}}
+ {% endfor %}
  {% endblock %}
  {% block footer %}
  {% endblock %}

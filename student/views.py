@@ -27,10 +27,14 @@ def registration(request):
 
 
 
-class registered_user(DetailView):
+class registered_user(TemplateView):
 	model = Registration
 	template_name = 'registration_list.html'
+	
 	def get_context_data(self,**kwargs):
 		context = super(registered_user,self).get_context_data(**kwargs)
-		context['first_name'] = Registration.name_count.all()
+		context['name_count'] = Registration.name_count.all()
+		context['men'] = Registration.men.all()
+		context['women'] = Registration.women.all()
+		context['list'] = Registration.name_list.all()
 		return context

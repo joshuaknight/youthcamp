@@ -6,7 +6,7 @@ from django.template.loader import *
 from contact.forms import *
 from contact.models import *
 from django.core.mail import send_mail
-import datetime
+from django.utils import timezone
 
 def contact(request):
 	form = formset_factory(Contact)
@@ -17,5 +17,9 @@ def contact(request):
 		if formset.is_valid():
 			for i in formset:
 				i.save()
-			return HttpResponseRedirect('/')
-	return render(request,"contact.html",{'formset':formset})
+			message = """
+				Thank You for Contacting username
+				Please Wait Let Us Get Back to You
+				"""
+			return render(request,"base.html",{'message':message})
+	return render(request,"contact.html",{'formset':formset,'now':timezone.now()})

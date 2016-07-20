@@ -13,6 +13,7 @@ class Contact(ModelForm):
         	'title': forms.Select(choices = TITLE_CHOICES),
         	}
        	help_texts = {
+          'title' : _('select a proper title'),
        		'query' : _('Please Be Brief about your Query'),
        		'name'  : _('Name should be valid'),
        		'email' : _('The way to contact you back'),

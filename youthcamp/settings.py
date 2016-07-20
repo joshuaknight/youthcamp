@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'Article',
     'Login',
     'bootstrap3',
+    'bootstrapform',
 ]
 
 MIDDLEWARE_CLASSES = [

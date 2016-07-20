@@ -24,21 +24,21 @@ login =[#url(r'^accounts/login/$',Login.as_view()),
 register = [url(r'^accounts/register/$',signup,name='signup'),
 			url(r'^accounts/register_success/$',register_success)]        
 
-registration = [url(r'^registration$',registration,name='register'),]
+registration = [url(r'^registration$',registration,name='register'),
                 #url(r'^(?P<faith_home>[-_\w]+)/$', registered_user.as_view(), name='first_name'),]
-                #url(r'^registereduser/$',registered_user.as_view(),name = 'article')]
+                url(r'^registereduser/$',registered_user.as_view(),name = 'registered')]
 
-feedback = [url(r'^feedback/$',Give_Feedback,name='feedback'),]
-            #url(r'all/$',display_feedback.as_view(),name='display_feedback'),]
+comment = [url(r'^comment/$',Give_Feedback,name='comment'),
+            url(r'comment/all/$',display_feedback.as_view(),name='display_comment'),]
 
-article = [url(r'^article/$',article,name='article'),]
-            #url(r'^article_dis/$',redirect.as_view(),name='article-detail')]
+article = [url(r'^article/$',article,name='article'),
+            url(r'^article_dis/$',display_article.as_view(),name='article-detail')]
 
 urlpatterns += home
 urlpatterns += article        
 urlpatterns += login  
 urlpatterns += registration     
 urlpatterns += contact
-urlpatterns += feedback
+urlpatterns += comment
 urlpatterns += register
 urlpatterns += staticfiles_urlpatterns()

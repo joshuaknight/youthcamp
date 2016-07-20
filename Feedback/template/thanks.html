@@ -1,20 +1,35 @@
 {% extends "base.html" %}
 
 {% block title %}
-Feedback
+All Comment List
 {% endblock %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
 {% block content %}
-<div class="displayforum">
-	{% for i in name %}
-	{% for j in i %}
-	<div class="makeup">
-	<p>{{j}}</p>
-	</div>
-	{% endfor %}
-	{% endfor %}
-</div>
 
-<a href="/feedback">Go Back</a>
+<div class="container">
+<div class="panel panel-default">
+ {% for i in message_list %}
+ 	{% for x in i %}
+ 		Commented by username @ date
+ 		<div class="panel-body">{{x}}</div>
+ 		<hr />
+ 	{% endfor %}
+ {% endfor %}
+</div>
+<a href="{% url 'comment' %}">
+	{% buttons submit='Add Comment' %}
+	{% endbuttons %}
+</a> 
+
+</div>
+<style type="text/css">
+	.arrow-container{
+		font-size:50px;
+	}
+</style>
+
+<a class="arrow-container" href="{% url 'comment' %}">{% bootstrap_icon 'arrow-left' %}</a>
 {% endblock %}
 {% block footer %}
 <hr>

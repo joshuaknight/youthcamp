@@ -23,11 +23,15 @@ class AuthorManager(models.Manager):
 	def get_queryset(self):
 		return super(AuthorManager,self).get_queryset().count()
 
+class ArticleManager(models.Manager):
+	def get_queryset(self):
+		return super(ArticleManager,self).get_queryset().values_list('article_name')
+
 class New_Article(models.Model):
 	author_name = models.CharField(max_length = 10,validators = [valid_name]) 
 	article_name = models.CharField(max_length=30,validators=[valid_name])	
 	content = models.CharField(max_length=20000,validators=[valid_content])
 	publ_date = models.DateField(verbose_name = "Publication Date")
-	author = AuthorManager()	
-
-		
+	objects = models.Manager()
+	article_list = ArticleManager()
+	author_count = AuthorManager()	
