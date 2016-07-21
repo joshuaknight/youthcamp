@@ -32,7 +32,8 @@ comment = [url(r'^comment/$',Give_Feedback,name='comment'),
             url(r'comment/all/$',display_feedback.as_view(),name='display_comment'),]
 
 article = [url(r'^article/$',article,name='article'),
-            url(r'^article_dis/$',display_article.as_view(),name='article-detail')]
+			#url(r'^/article/display/',display_article.as_view(),name='content'),
+            url(r'^article/display$',display_article.as_view(),name='article-detail')]
 
 urlpatterns += home
 urlpatterns += article        

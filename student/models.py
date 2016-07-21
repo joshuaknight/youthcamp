@@ -51,7 +51,7 @@ class Registration(models.Model):
 	date_of_birth = models.DateField()
 	gender = models.CharField(max_length=10)
 	faith_home = models.CharField(max_length=20)
-	every = models.Manager()
+	objects = models.Manager()
 	name_count = NameManager()
 	name_list = Namelist()
 	men = MaleManager()

@@ -36,5 +36,5 @@ class registered_user(TemplateView):
 		context['name_count'] = Registration.name_count.all()
 		context['men'] = Registration.men.all()
 		context['women'] = Registration.women.all()
-		context['list'] = Registration.name_list.all()
+		context['objects'] = Registration.objects.all()
 		return context

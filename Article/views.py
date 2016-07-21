@@ -31,7 +31,7 @@ def article(request):
 			if formset.is_valid():
 				for form in formset:
 					form.save()
-					return HttpResponseRedirect('/')
+					return HttpResponseRedirect('/article/display')
 	return render(request,'article.html',{'formset' : formset,'now':now})
 
 class display_article(TemplateView):
@@ -40,6 +40,6 @@ class display_article(TemplateView):
 	def get_context_data(self,**kwargs):
 		context= super(display_article,self).get_context_data(**kwargs)
 		context['author_count'] = New_Article.author_count.all()
-		context['article_name'] = New_Article.article_list.all()
+		context['bj'] = New_Article.objects.all()
 		return context
 

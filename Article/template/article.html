@@ -14,6 +14,9 @@ Article
 </form>
 {% endblock %}
 {% block footer %}
+<a href="{% url 'article-detail' %}">
+{% buttons submit='Display Article' %}
+{% endbuttons %}
 <hr />
-<a href="{% url 'article-detail' %}">Display Article</a>
+</a>
 {% endblock %}

@@ -3,14 +3,26 @@
 {% block content %}
     <h2>Registered Users</h2>
     <div class="container">
-    <div class="panel panel-default">
     <span>Total Number of Registrations : {{ name_count }}</span>
     <div class="container"> 
       <span class="container">Number of Male Registrations {{men}}</span>
       <span class="container">Number of Women Registrations {{women}}</span>
-      {% for i in list %}
-      {{ i }}
+      <table class="table table-compact table-bordered">
+      <tr>
+      <th>Name</th>
+      <th>Father's Name</th>
+      <th>Gender</th>
+      <th>Faith Home</th>
+      </tr>
+      {% for i in objects %}
+      <tr>
+      <td>{{ i.first_name }}</td>
+      <td>{{ i.father_name }}</td>
+      <td>{{ i.gender }}</td>
+      <td>{{ i.faith_home }}</td>
+      </tr>
       {% endfor %}
+      </table>
     </div>
     </div>
     </div>

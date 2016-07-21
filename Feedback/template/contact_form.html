@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 {% bootstrap_formset_errors formset %}
-<form class = "comment"action = '' method = 'post' > 
+<form class = "comment" action = '' method = 'post' > 
 {% csrf_token %}
 	{{ formset.managment_form }}
     {% bootstrap_formset formset layout='horizontal' %}
@@ -15,9 +15,11 @@
 {% endblock %}
 
 {% block footer %}
-<a href = "{% url 'display_comment' %}">All Comments</a>  
-<br /><br />
+<a href = "{% url 'display_comment' %}">
 <hr>
+{% buttons submit='All Comments' %}
+{% endbuttons %}
+</a>  
+<br /><br />
 </p>
-<a href="/">Home</a>
 {% endblock %}

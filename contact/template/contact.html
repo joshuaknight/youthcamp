@@ -16,5 +16,8 @@
 {% block footer %}
 <hr >
 <br />
-<a href="/">Home</a>
+<a href="{% url 'home' %}">
+	{% buttons submit='Home'%}
+	{% endbuttons %}
+</a>
 {% endblock %}
