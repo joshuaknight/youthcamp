@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'Login',
     'bootstrap3',
     'bootstrapform',
+    'bootstrap3_datetime',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -163,8 +164,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 #)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+MEDIA_URL = '/media/'
 #STATICFILES_DIRS = (
 #    os.path.join("/home/joshua/Desktop/youthcamp/static", 'staticfiles'),
 #)

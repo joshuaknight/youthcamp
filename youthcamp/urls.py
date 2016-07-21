@@ -1,6 +1,8 @@
+from django.conf.urls.static import static
 from django.conf.urls import url,include 
 from django.contrib import admin
 from forum.views import *
+from django.conf import settings
 from django.contrib.auth import views 
 from Feedback.views import *
 from student.views import *
@@ -35,6 +37,8 @@ article = [url(r'^article/$',article,name='article'),
 			#url(r'^/article/display/',display_article.as_view(),name='content'),
             url(r'^article/display$',display_article.as_view(),name='article-detail')]
 
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += home
 urlpatterns += article        
 urlpatterns += login  

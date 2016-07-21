@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
-
+{% load static %}
 {% block title %}
 	Camping Registration
 {% endblock %}
-
+{% bootstrap_javascript %}
+{% bootstrap_css %}
 {% block content %}
 {% bootstrap_formset_errors formset %}
 <form class="registration" action = '' method = 'post'>
 {% csrf_token %}
 	{{ formset.managment_form }}
-	{% bootstrap_formset formset 	layout='horizontal' %}
+	{{ formset.media }}
+	{% bootstrap_formset formset layout='horizontal' %}
 	{% buttons submit='Register' reset='cancel' %}
 	{% endbuttons %}
 </form>

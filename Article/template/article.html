@@ -4,10 +4,13 @@
 Article
 {% endblock %}
 {% block content %}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
 {% bootstrap_formset_errors formset %}
 <form class="" action="" method = 'post'>
 {% csrf_token %}
     {{ formset.management_form }}
+    {{ formset.media }}
     {% bootstrap_formset formset layout='inline' %} 
     {% buttons submit='Create' reset="reset" button_size='lg' %}
     {% endbuttons %}	

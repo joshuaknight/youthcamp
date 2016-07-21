@@ -2,9 +2,10 @@ from django.forms import ModelForm,Textarea
 from student.models import *
 from django import forms
 import re 
+from django.forms.extras.widgets import SelectDateWidget
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.admin.widgets import AdminDateWidget
+from bootstrap3_datetime.widgets import DateTimePicker
 
 class RegisForm(ModelForm):
 	class Meta:
@@ -16,7 +17,9 @@ class RegisForm(ModelForm):
 					'faith_home' : forms.Select(choices = FAITH_CHOICE),
 					'gender'	 : forms.Select(choices=GENDER_CHOICE),
 				 	'annual_income':forms.Select(choices=Annual_Choice),
-					'date_of_birth' : AdminDateWidget
+					'date_of_birth': DateTimePicker(options={"format": "YYYY-MM-DD",
+				
+                                       "pickTime": False})
 					}
 		help_texts = {
 					'first_name'	: _('eg:\'joshua\''),
