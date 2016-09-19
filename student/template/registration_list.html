@@ -1,35 +1,64 @@
-{% extends "base.html" %}
+
 {% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block header %}
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
+  <style type="text/css">
+    .cool{
+      word-spacing:10px;
+    }
+    .form-group{
+      width:300px;
+      word-wrap:all;
+    }
+  </style>
+{% endblock %}
+
 {% block content %}
-    <h2>Registered Users</h2>
-    <div class="container">
-    <span>Total Number of Registrations : {{ name_count }}</span>
-    <div class="container"> 
-      <span class="container">Number of Male Registrations {{men}}</span>
-      <span class="container">Number of Women Registrations {{women}}</span>
+<div class="container">
+    <div class="breadcrumb">  
+      <center><h2 class="cool">
+      <a class="s" href="{% url 'home' %}">{% bootstrap_icon 'home'  %}</a> Registered Users Male : {{men}} Female : {{women}} Total : {{name_count}}</h2></center>     
+      <center>
+      <form method="get">
+      <input type="search" name="q" class="form-group">
+      <button type="submit" class="btn btn-success">
+        SEARCH
+      </button>
+      </form>
+      </center>
       <table class="table table-compact table-bordered">
       <tr>
       <th>Name</th>
       <th>Father's Name</th>
+      <th>Mother's Name</th>
       <th>Gender</th>
       <th>Faith Home</th>
+      <th>Age</th>
       </tr>
       {% for i in objects %}
       <tr>
-      <td>{{ i.first_name }}</td>
+      <td><a href="{% url 'student-detail' i.id %}">{{ i.first_name }}</a></td>
       <td>{{ i.father_name }}</td>
+      <td>{{ i.mother_name }}</td>
       <td>{{ i.gender }}</td>
       <td>{{ i.faith_home }}</td>
+      <td>{{ i.date_of_birth }}</td>
       </tr>
       {% endfor %}
-      </table>
+      </table>      
+     <center>{% bootstrap_pagination page %}</center> 
     </div>
     </div>
     </div>
+</div>    
 {% endblock %}
 {% block footer %}
-<a href="{% url 'register' %}">
-{% buttons submit='Register Again'%}
-{% endbuttons %}
+<a href="{% url 'registration' %}">
+<center>{% buttons submit='Register Again'%}
+{% endbuttons %}</center>
 </a>
 {% endblock %}

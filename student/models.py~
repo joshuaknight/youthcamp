@@ -3,36 +3,29 @@ from django.core import validators
 import re
 from django.core.exceptions import ValidationError
 
-def validate_name(value,length=3):
+def validate_name(value,length=5):
 	regex = r"([a-zA-Z])"
 	if (len(str(value)) <= length or not re.search(regex,value)):
     		raise ValidationError(u'%s is not a Valid Name' % value)
 
-def get_student_name(instance,filename):
-	try:
-		x = Registration.objects.all().__len__()		
-		a = Registration.objects.get(pk = x)		
-		return "student/%s/%s"%(a.first_name,filename)
-	except:
-		student = '1st'
-		return "student/%s"%(student)	
 
-#FAITH_CHOICE = {
-#	('others','others'),
-#	('Coimbatore','Coimbatore'),
-#	('Chennai','Chennai'),
-#	('Erode','Erode'),
-#}
+FAITH_CHOICE = {
+	('others','others'),
+	('Coimbatore','Coimbatore'),
+	('Chennai','Chennai'),
+	('Erode','Erode'),
+}
 GENDER_CHOICE = {
 	('Male','Male'),
 	('Female','Female'),
+	('Others','Others'),
 }
-#Annual_Choice = {
-#	('1000 - 50,000','1000 - 50,000'),
-#	('50,000 - 1,00,000','50,000 - 1,00,000'),
-#	('1,00,000 - 5,00,000','1,00,000 - 5,00,000'),
-#	('5,00,000 - 10,00,000','5,00,000 - 10,00,000'),
-#}
+Annual_Choice = {
+	('1000 - 50,000','1000 - 50,000'),
+	('50,000 - 1,00,000','50,000 - 1,00,000'),
+	('1,00,000 - 5,00,000','1,00,000 - 5,00,000'),
+	('5,00,000 - 10,00,000','5,00,000 - 10,00,000'),
+}
 class NameManager(models.Manager):
     def get_queryset(self):
         return super(NameManager ,self).get_queryset().count()
@@ -49,16 +42,16 @@ class FemaleManager(models.Manager):
 	def get_queryset(self):
 		return super(FemaleManager ,self).get_queryset().filter(gender ='Female').count()
 		
-
 class Registration(models.Model):
 	first_name = models.CharField(validators = [validate_name],max_length=20)
 	last_name = models.CharField(validators = [validate_name],max_length = 20)
 	father_name = models.CharField(validators = [validate_name],max_length = 20)
 	mother_name = models.CharField(validators = [validate_name],max_length = 20)
+	annual_income = models.CharField(max_length=100)
 	date_of_birth = models.DateField()
 	gender = models.CharField(max_length=10)
-	faith_home = models.CharField(max_length=20,validators = [validate_name])
-	Candidate_Picture = models.ImageField(upload_to = get_student_name,blank=  True)	
+	faith_home = models.CharField(max_length=20)
+	Candidate_Picture = models.ImageField(upload_to = 'pictures')	
 	objects = models.Manager()
 	name_count = NameManager()
 	name_list = Namelist()

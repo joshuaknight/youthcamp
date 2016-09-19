@@ -1,23 +1,26 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
+
 {% block title %}
 	Contact
 {% endblock %}
+
+{% block header %}
+	<style type="text/css">
+		#contact_form{
+			width:400px;
+		}
+	</style>
+{% endblock %}
+
 {% block content %}
-{% bootstrap_formset_errors formset %}
-	<form class="submission" action="" method="post">
+{% bootstrap_form_errors form %}
+<div class="container">
+	<form class="form-horizontal" id="contact_form" action="" method="post">
 		{% csrf_token %}
-		{% bootstrap_formset formset layout='horizontal' %}
+		{% bootstrap_form form layout='inline' %}
 		{% buttons submit='send' reset='cancel'%}
 		{% endbuttons %}
 	</form>
-{% endblock %}
-
-{% block footer %}
-<hr >
-<br />
-<a href="{% url 'home' %}">
-	{% buttons submit='Home'%}
-	{% endbuttons %}
-</a>
+</div>	
 {% endblock %}

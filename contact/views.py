@@ -7,19 +7,35 @@ from contact.forms import *
 from contact.models import *
 from django.core.mail import send_mail
 from django.utils import timezone
+from django.views.generic import *
+from youthcamp.settings import *
+from django.core.urlresolvers import reverse
 
-def contact(request):
-	form = formset_factory(Contact)
-	formset = form()
-	if request.method == 'POST':
-		if not formset.is_valid():
-			formset = form(request.POST)
-		if formset.is_valid():
-			for i in formset:
-				i.save()
-			message = """
-				Thank You for Contacting username
-				Please Wait Let Us Get Back to You
-				"""
-			return render(request,"base.html",{'message':message})
-	return render(request,"contact.html",{'formset':formset,'now':timezone.now()})
+class contact(FormView):
+	template_name = 'contact.html'
+	form_class = ContactForm
+
+	def get_context_data(self,**kwargs):
+		context = super(contact, self).get_context_data(**kwargs)
+		context['key'] = 'SEND'
+		return context
+
+	def form_valid(self,form):
+		name = self.request.POST['name']
+		email = self.request.POST['email']
+		query = self.request.POST['query']
+		message = """Hello %s and Welcome,Please Feel Free to reply to this mail
+					Your Query is Processed and will be responded with the solution
+					in the next working hours Thank You
+
+					This is Your Following Query 
+
+					%s 
+					Thank You Regards 
+						Owner"""%(name,query)
+		mymail = EMAIL_HOST_USER
+		send_mail(name,message,mymail,[email],fail_silently = False)
+		return super(contact,self).form_valid(form)
+
+	def get_success_url(self):		
+		return reverse('home')

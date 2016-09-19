@@ -13,13 +13,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mynewrestaurant2016@gmail.com'
+EMAIL_HOST_PASSWORD = 'creative2010'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'postmaster@sandboxb39677954bf2440db6cc0504fc6a12f0.mailgun.org'
-EMAIL_HOST_PASSWORD = '5b529ad6385b6847d237ad8394eb203b'
 EMAIL_USE_TLS = True
-
+  
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,6 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+THUMBNAIL_DEBUG = True
 
 # Application definition
 
@@ -44,19 +44,20 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'forum',
-    'Feedback',
+    'django.contrib.staticfiles',    
     'student',
     'contact',
-    'Article',
-    'Login',
+    'Article',    
     'bootstrap3',
+    'oauth2_provider',
+    'corsheaders',
     'bootstrapform',
     'bootstrap3_datetime',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE_CLASSES = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,7 +74,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR + '/Feedback/template',
-                BASE_DIR + '/forum/template',
+                BASE_DIR + '/youthcamp/template',
                 BASE_DIR + '/contact/template',
                 BASE_DIR + '/student/template',
                 BASE_DIR + '/Article/template',
@@ -143,9 +144,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 ## https://docs.djangoproject.com/en/1.9/howto/static-files/
 ##STATIC_ROOT = 
-STATIC_URL = '/static/'
-STATIC_ROOT = ''
-STATICFILES_DIRS = ()  
 
 #MEDIA_ROOT = os.path.join("/home/joshua/Desktop/youthcamp/", 'media')
 
@@ -159,14 +157,20 @@ STATICFILES_DIRS = ()
  #   '/static/',
 #]
 
+STATIC_URL = '/static/'
+
+#STATIC_ROOT = BASE_DIR + '/static/'  
+
 STATICFILES_FINDERS = ( 
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-#)
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
 
-MEDIA_URL = '/media/'
-#STATICFILES_DIRS = (
-#    os.path.join("/home/joshua/Desktop/youthcamp/static", 'staticfiles'),
-#)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+MEDIA_ROOT = BASE_DIR + '/static/media'
+
+MEDIA_URL = ''

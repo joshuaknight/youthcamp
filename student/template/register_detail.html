@@ -1,0 +1,78 @@
+
+{% load bootstrap3 %}
+{% load thumbnail %}
+
+{% block header %}
+	<style type="text/css">
+		.container{
+			padding:30px;
+			
+		}
+		.form-horizontal{
+			padding-left:300px;
+			width:540px;
+		}
+		.footer{
+			background-color: grey;
+			align-items:center;
+			padding:46px;
+		}
+	</style>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+	<div class="row">
+		<a class="s" href="{% url 'home' %}">{% bootstrap_icon 'home'  %}</a>	
+		<div class="col">
+			<div class="panel panel-body">
+			<div class="container">
+			<div class="row">
+			<div class="col-sm-12">
+			<h3><a href="{% url 'registered_list'%}">{% bootstrap_icon 'arrow-left' %}</a></h3>
+
+			</div>
+			</div>			
+			
+			<div class="col-sm-2">			
+
+			<div class="thumbnail">				
+			{% if student.Candidate_Picture %}
+			{% thumbnail student.Candidate_Picture "100x100" crop="center" as im %}
+			<img src= "/static/media/{{im}}" class="photo" />
+			{% endthumbnail %}			
+			{% else %}
+			<img class="photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+			{% endif %}
+			
+			</div>
+			</div>
+			<div class="col-sm-5">
+			<div class="panel panel-default">
+			<div class="panel-heading">
+			<strong>Detailed Description</strong> 
+			</div>
+			<div class="panel-body">
+				<h4>First name- <strong>{{ student.first_name }}</strong></h4>
+				<h4>Last Name - <strong>{{ student.last_name }}</strong></h4>								
+				<h4>Father -  <strong>{{ student.father_name }}</strong></h4>				
+				<h4>Mother -  <strong>{{ student.mother_name }}</strong></h4>	
+				<h4>Age -  <strong>{{ student.date_of_birth }}</strong></h4>				
+				<h4>FaithHome -  <strong>{{ student.faith_home }}</strong></h4>				
+			</div><!-- /panel-body -->
+			</div><!-- /panel panel-default -->
+			</div><!-- /col-sm-5 -->	
+			</div>	
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

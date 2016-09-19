@@ -12,15 +12,9 @@ def validate_len(value,length=20):
 	if not re.search(regex,value) or len(str(value)) < length:
 		raise ValidationError(u"Not Valid Be More Specific")
 		
-TITLE_CHOICES = {
-	('....','....'),
-	('Mr','Mr'),
-	('Mrs' , 'Mrs'),
-	('Ms','Ms'),
-}
+
 class Contact_all(models.Model):
-	name  = models.CharField(validators=[validate_name],max_length = 100) 
-	title = models.CharField(max_length=3)
+	name  = models.CharField(validators=[validate_name],max_length = 100) 	
 	email = models.EmailField()
 	query = models.CharField(validators = [validate_len],max_length = 400)
 	date = models.DateField(null=True)

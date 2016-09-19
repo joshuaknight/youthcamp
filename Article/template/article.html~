@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+{% load bootstrap3 %}
+{% block title %}
+Article
+{% endblock %}
+{% block content %}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+{% bootstrap_formset_errors formset %}
+<form class="" action="" method = 'post'>
+{% csrf_token %}
+    {{ formset.management_form }}
+    {{ formset.media }}
+    {% bootstrap_formset formset layout='inline' %} 
+    {% buttons submit='Create' reset="reset" button_size='lg' %}
+    {% endbuttons %}	
+</form>
+{% endblock %}
+{% block footer %}
+<a href="{% url 'article-detail' %}">
+{% buttons submit='Display Article' %}
+{% endbuttons %}
+<hr />
+</a>
+{% endblock %}

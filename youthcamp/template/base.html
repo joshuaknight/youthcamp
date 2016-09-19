@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+ <title>{% block title %}Home{% endblock %}</title>
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% load thumbnail %}
+{% bootstrap_javascript %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
+<style type="text/css">
+	.dropdown:hover .dropdown-menu {
+	display: block;
+	}
+	.navbar-hover{
+		padding-left:140px;
+	}
+</style>
+</head>
+<body class="text-Primary">
+ <h1>
+ <center>
+ <a href="{% url 'home' %}">Youth Camp</a>
+ </h1><center>
+
+
+ <nav class="navbar navbar-hover">
+  	<div class="container-fluid">
+    <ul class="navbar-header"></div>    
+    <ul class="nav navbar-nav">
+  
+  
+    
+	
+	<li class="dropdown">
+	<a class="dropdown-hover" data-toggle="dropdown"  href="{% url 'registration' %}">REGISTRATION
+	<ul class="dropdown-menu">
+	<li><a href="{% url 'registration' %}">REGISTER</a></li>
+	<li><a href="{% url 'registered_list' %}">REGISTERED</a></li>
+	</ul>
+
+	<li class="dropdown">
+	<a class="dropdown-hover" data-toggle="dropdown" href="{% url 'article' %}">ARTICLE</a>
+	<ul class="dropdown-menu"> 
+	<li><a href="{% url 'article' %}">ARTICLE ADD</a></li>
+	<li><a href="{% url 'display_article' %}">ARTICLE DISPLAY</a></li>
+	</ul>
+	<li><a href="{% url 'contact' %}">CONTACT US</a></li>		
+	<li><a href="#">ABOUT OUR MISSION</a></li>		 
+		
+
+		</ul>	
+
+		</ul>
+		</div>
+	</nav>
+		</body>
+
+
+
+
+
+ {% block header %}
+ {% endblock %}
+ {% block content %}
+ {{ message }}
+ {% for i in author_name %}
+ 	{{i}}
+ {% endfor %}
+ {% endblock %}
+ {% block footer %}
+ {% endblock %}
+</body>
+</html>
