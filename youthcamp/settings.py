@@ -74,7 +74,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR + '/Feedback/template',
-                BASE_DIR + '/youthcamp/template',
+                BASE_DIR + '/youthcamp/templates',
                 BASE_DIR + '/contact/template',
                 BASE_DIR + '/student/template',
                 BASE_DIR + '/Article/template',

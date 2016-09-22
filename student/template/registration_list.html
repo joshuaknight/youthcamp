@@ -3,9 +3,26 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block header %}
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/i18n/defaults-*.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
+  
+  <script type="text/javascript">
+      $(function(){
+      // bind change event to select
+      $('#dynamic_select').on('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = url; // redirect
+          }
+          return false;
+      });
+    });
+
+  </script>
+
   <style type="text/css">
     .cool{
       word-spacing:10px;
@@ -29,6 +46,31 @@
         SEARCH
       </button>
       </form>
+
+      <form method="get" action="">
+      {% csrf_token %}
+      <strong>List By District</strong>
+      <select id="dynamic_select" name="district" title="Select a District">
+        <option title="Select a District to Filter">
+          
+        </option>
+        <option>
+         Coimbatore
+        </option> 
+        <option >
+          Chennai          
+        </option> 
+        <option>
+          Erode          
+        </option> 
+        <option>
+          Trichy          
+        </option>  
+        <option>
+          karaikudi          
+        </option>        
+      </select>
+      </form>
       </center>
       <table class="table table-compact table-bordered">
       <tr>
@@ -44,7 +86,11 @@
       <td><a href="{% url 'student-detail' i.id %}">{{ i.first_name }}</a></td>
       <td>{{ i.father_name }}</td>
       <td>{{ i.mother_name }}</td>
-      <td>{{ i.gender }}</td>
+      {% ifequal i.gender 'Male' %}
+      <td><a href="{% url 'student_male'  %}">{{ i.gender }}</a></td>
+      {% else %}
+        <td><a href="{% url 'student_female'  %}">{{ i.gender }}</a></td>
+      {% endifequal %}    
       <td>{{ i.faith_home }}</td>
       <td>{{ i.date_of_birth }}</td>
       </tr>

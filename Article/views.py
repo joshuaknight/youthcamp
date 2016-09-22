@@ -43,3 +43,20 @@ class display_article(ListView):
 		context = super(display_article,self).get_context_data(*args,**kwargs)
 		context['page'] = get_page(self.request)
 		return context
+
+class article_detail(DetailView):
+	template_name = "article_detail.html"
+	model = New_Article	
+	context_object_name = 'article'
+
+
+class article_update(UpdateView):
+	template_name = "article_update.html"
+	model = New_Article	
+	context_object_name = 'article'
+
+
+class article_delete(DeleteView):
+	template_name = "article_delete.html"
+	model = New_Article	
+	context_object_name = 'article'	

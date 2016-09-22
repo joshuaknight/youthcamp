@@ -70,3 +70,42 @@ class student_detail(DetailView):
 	template_name = 'register_detail.html'
 	model = Registration		
 	context_object_name = 'student'
+
+
+class student_male(ListView):
+	template_name = 'student_male_list.html'
+	queryset = 	Registration.objects.filter(gender = 'Male')
+	context_object_name = 'objects'
+	paginate_by = 4
+
+
+	def get_context_data(self,**kwargs):
+		context = super(student_male,self).get_context_data(**kwargs)		
+		context['page'] = get_page(self.request)	
+		return context	
+
+class student_female(ListView):
+	template_name = 'student_male_list.html'
+	queryset = 	Registration.objects.filter(gender = 'Female')
+	context_object_name = 'objects'
+	paginate_by = 4
+
+
+	def get_context_data(self,**kwargs):
+		context = super(student_female,self).get_context_data(**kwargs)		
+		context['page'] = get_page(self.request)	
+		return context				
+
+class student_location(DetailView):
+	template_name = 'student_location.html'
+	model = Registration
+	context_object_name = 'objects'
+
+	def get_object(self, queryset=Registration.objects.all()):
+	     try:
+	         return queryset.filter(faith_home__icontains = self.kwargs['faith_home'])
+	     except Registration.DoesNotExist:
+	         raise Http404
+
+	def get_queryset(self):
+		return Registration.objects.filter(faith_home__icontains = self.get_object())

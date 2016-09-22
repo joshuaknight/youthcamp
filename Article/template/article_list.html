@@ -22,9 +22,9 @@
     {% for i in article %}
     <tr> 
          
-        <td><a href="#">{{ i.article_name }}</a></td>
+        <td><a href="{% url 'article_detail' i.id %}">{{ i.article_name }}</a></td>
 
-        <td><a href="#">{{ i.author_name }}</a></td>     
+        <td><a href="">{{ i.author_name }}</a></td>     
     
         <td>{{ i.publ_date }}</td>
     </tr>

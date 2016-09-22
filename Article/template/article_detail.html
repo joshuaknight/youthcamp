@@ -1,0 +1,57 @@
+
+{% load bootstrap3 %}
+{% block title %}
+{% endblock %}
+    {% block header %}
+        <style type="text/css">
+            #ys{
+                color:red;
+            }
+            .panel-body{
+                background-color:lightgrey;                
+            }
+            #content{
+                word-spacing:5px;
+                padding:10px;
+            }
+        </style>
+    {% endblock %}
+{% load static %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}	
+	<br /><br />
+	<div class="container">    
+	
+	<div class="row">
+        <div class="col sm-12">
+            <div class="panel panel-default">
+            <div class="panel-heading"> 
+                <strong>Article Name &nbsp;</strong><span id="ys">{{ article.article_name }}</span>
+            </div>   
+            <div class="panel-body">
+                <span id="content">{{ article.content }}</span>
+            </div>
+            <div class="panel-footer">
+                <strong>Published On </strong>&nbsp;&nbsp;<span id="ys">{{ article.publ_date }}</span>&nbsp;&nbsp;<strong>By {{ article.author_name }}</strong>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+   
+{% endblock %}
+{% block footer %}
+<style type="text/css">
+	.arrow-container{
+		font-size:50px;
+
+	}
+</style>
+<center>
+<a class="arrow-container" href="{% url 'display_article' %}">
+{% bootstrap_icon 'arrow-left' %}
+</a>
+</center>
+{% endblock %}
