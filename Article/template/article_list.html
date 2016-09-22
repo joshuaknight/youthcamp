@@ -22,12 +22,18 @@
     {% for i in article %}
     <tr> 
          
-        <td><a href="{% url 'article_detail' i.id %}">{{ i.article_name }}</a></td>
+        <td>
+        <a href="{% url 'article_detail' i.id %}">{{ i.article_name }}</a> 
+        &nbsp;&nbsp;&nbsp;
+        <a href="{% url 'article_update' i.id %}">{% bootstrap_icon 'edit' %}</a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="{% url 'article_delete' i.id %}">{% bootstrap_icon 'remove' %}</a>
+        </td>
 
         <td><a href="">{{ i.author_name }}</a></td>     
     
         <td>{{ i.publ_date }}</td>
-    </tr>
+     </tr >
     {% endfor %}
 </table>
 </div>
@@ -42,8 +48,13 @@
 	}
 </style>
 <center>
+<h1>
+<a href="{% url 'home' %}">
+{% bootstrap_icon 'home' %}
+</a>
 <a class="arrow-container" href="{% url 'article' %}">
 {% bootstrap_icon 'arrow-left' %}
 </a>
+</h1>
 </center>
 {% endblock %}

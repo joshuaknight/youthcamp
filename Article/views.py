@@ -11,6 +11,7 @@ from django.views.generic import *
 import datetime
 from django.core.paginator import *
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import *
 
 def get_page(request):
 	article_list = New_Article.objects.all().order_by('-id')
@@ -33,6 +34,15 @@ class article(FormView):
 		return super(article,self).form_valid(form)
 
 
+	def get_context_data(self,*args,**kwargs):
+		context = super(article,self).get_context_data(*args,**kwargs)
+		context['key'] = 'Create'
+		return context
+
+
+	def get_success_url(self):
+		return reverse('display_article')
+
 class display_article(ListView):
 	template_name = "article_list.html"	
 	model = New_Article
@@ -51,12 +61,27 @@ class article_detail(DetailView):
 
 
 class article_update(UpdateView):
-	template_name = "article_update.html"
-	model = New_Article	
+	template_name = "article.html"
+	model = New_Article
+	form_class = MyArticle
 	context_object_name = 'article'
 
 
+	def get_success_url(self):
+		return reverse('display_article')
+
+	def get_context_data(self,*args,**kwargs):
+		context = super(article_update,self).get_context_data(*args,**kwargs)
+		context['key'] = 'Update'
+		return context
+
 class article_delete(DeleteView):
-	template_name = "article_delete.html"
+	template_name = "delete.html"
 	model = New_Article	
 	context_object_name = 'article'	
+
+
+	def get_success_url(self):
+		return reverse('display_article')
+
+	
