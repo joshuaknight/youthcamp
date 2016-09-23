@@ -1,0 +1,10 @@
+.dropdown:hover .dropdown-menu {
+	display: block;
+	}
+	.navbar-hover{
+		padding-left:140px;
+		background-color:lightblue;
+	}
+	.dropdown-menu > li{
+		background-color:lightgreen;		
+	}

@@ -3,18 +3,7 @@
 {% block title %}
 {% endblock %}
     {% block header %}
-        <style type="text/css">
-            #ys{
-                color:red;
-            }
-            .panel-body{
-                background-color:lightgrey;                
-            }
-            #content{
-                word-spacing:5px;
-                padding:10px;
-            }
-        </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/article/article_css.css' %}">
     {% endblock %}
 {% load static %}
 {% bootstrap_css %}
@@ -43,12 +32,7 @@
    
 {% endblock %}
 {% block footer %}
-<style type="text/css">
-	.arrow-container{
-		font-size:50px;
 
-	}
-</style>
 <center>
 <a class="arrow-container" href="{% url 'display_article' %}">
 {% bootstrap_icon 'arrow-left' %}

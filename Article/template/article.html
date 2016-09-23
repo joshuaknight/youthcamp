@@ -1,12 +1,9 @@
 {% include "base.html" %}
 {% load bootstrap3 %}
+{% load static %}
 
 {% block header %}
- 	<style type="text/css">
- 		.form-horizontal{
- 			width:500px;
- 		}
- 	</style>
+ 	<link rel="stylesheet" type="text/css" href="{% static 'css/article/article_css.css' %}">
 {% endblock %} 
 {% bootstrap_javascript %}
 {% bootstrap_css %}

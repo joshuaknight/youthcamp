@@ -1,0 +1,27 @@
+.container{
+			padding:30px;
+	
+}
+.form-horizontal{
+	padding-left:300px;
+	width:540px;
+}
+.footer{
+	background-color: grey;
+	align-items:center;
+	padding:46px;
+}
+ .s {
+font-size: 50px;
+}
+
+.cool{
+      word-spacing:10px;
+    }
+    .form-group{
+      width:300px;
+      word-wrap:all;
+    }
+    .btn{
+      padding:10px;
+    }

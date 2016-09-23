@@ -5,7 +5,8 @@
 {% load static %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% block content %}	
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/article/article_css.css' %}">	
 	<br /><br />
 	<div class="container">
     <div class="panel panel-default">
@@ -41,12 +42,7 @@
    <center>{% bootstrap_pagination page %}</center> 
 {% endblock %}
 {% block footer %}
-<style type="text/css">
-	.arrow-container{
-		font-size:50px;
 
-	}
-</style>
 <center>
 <h1>
 <a href="{% url 'home' %}">
