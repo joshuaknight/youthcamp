@@ -54,14 +54,44 @@ class display_article(ListView):
 		context['page'] = get_page(self.request)
 		return context
 
-class article_detail(DetailView):
+
+
+class article_comment(FormView):
+	template_name = "article.html"
+	form_class = CommentForm
+
+	def get_context_data(self,*args,**kwargs):
+		context = super(article_comment,self).get_context_data(*args,**kwargs)
+		context['key'] = 'Add Comment'
+		return context
+
+	def form_valid(self,form):			
+		my_val = self.kwargs['pk']		
+		comment = form.save(commit=False)
+		comment.object_id = my_val
+		comment.save()			
+		return super(article_comment,self).form_valid(form)
+
+	def get_success_url(self):
+		return reverse('article_detail',kwargs={'pk':self.kwargs['pk']})
+	
+
+class Article_Detail(article_comment,DetailView):
 	template_name = "article_detail.html"
 	model = New_Article	
-	context_object_name = 'article'
+	context_object_name = 'article'	
+
+	def get_context_data(self,*args,**kwargs):	
+		self.object = self.get_object()	
+		context = super(Article_Detail,self).get_context_data(*args,**kwargs)
+		get_id = New_Article.objects.get(pk = self.kwargs['pk']).id						
+		context['comment'] = Article_Comment.objects.filter(object_id = get_id)
+		return context
+
 
 
 class article_update(UpdateView):
-	template_name = "article.html"
+	template_name = "article.html"	
 	model = New_Article
 	form_class = MyArticle
 	context_object_name = 'article'

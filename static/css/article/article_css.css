@@ -1,6 +1,6 @@
 
-.form-horizontal{
- 			width:500px;
+.container{
+	padding: 100px;
 }
 
 #ys{
@@ -13,7 +13,7 @@
     word-spacing:5px;
     padding:10px;
 }
-
+	
 .arrow-container{
 		font-size:50px;
 

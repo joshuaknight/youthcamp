@@ -3,19 +3,62 @@
 {% load static %}
 
 {% block header %}
- 	<link rel="stylesheet" type="text/css" href="{% static 'css/article/article_css.css' %}">
+
+	<style type="text/css">
+		.container{
+			padding-right:100px;
+		}
+		
+		#cont{
+			padding-right: 290px;			
+			box-sizing:100px;
+		}
+	</style>
+	
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+				var title = $("#id_title").val()
+				console.log(title)
+		});
+	</script>
 {% endblock %} 
 {% bootstrap_javascript %}
 {% bootstrap_css %}
+
 {% block content %}
 
 {% bootstrap_form_errors form %}
-<form class="form-horizontal" action="" method = 'post'>
+
+{% comment %}
+<div col-sm-6>
+	<h1>Preview</h1>
+	<div class="content-preview">
+		<h3 id="preview-title">
+			<p id="preview-content"></p>
+		</h3>
+	</div>
+</div>
+
+{% endcomment %}
+
+<center>
+<div class="container">
+<form class="form-horizontal  col-sm-3" enctype="multipart/form-data" action="" method = 'post'>
 {% csrf_token %}
     {{ form.management_form }}
-    {{ form.media }}
-    {% bootstrap_form form layout='inline' %} 
+    {{ form.media }}    
+
+    {% bootstrap_field form.author_name layout='inline' %}   
+    {% bootstrap_field form.article_name layout='inline' %}   
+    <div  id="cont" data-provide="markdown">
+    {% bootstrap_field form.content layout='inline' %}   
+    </div>
     {% buttons submit=key reset="reset" button_size='lg' %}
     {% endbuttons %}	
+    
 </form>
+</div>
+</center>
 {% endblock %}
+

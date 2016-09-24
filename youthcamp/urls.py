@@ -6,6 +6,10 @@ from django.conf import settings
 from django.contrib.auth import views 
 from contact.views import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from Article.models import *
+
+admin.autodiscover()
+
 
 urlpatterns = [
 	url(r'^$',home_page.as_view(),name = 'home'),

@@ -1,5 +1,5 @@
 import os 
-BASE_DIR = os.path.dirname(os.path.abspath('s'))
+BASE_DIR = '/home/joshua/Desktop/youthcamp'
 
 DATA = {
     'default': {

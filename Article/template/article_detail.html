@@ -1,9 +1,18 @@
-
+{% load static %}
 {% load bootstrap3 %}
 {% block title %}
 {% endblock %}
     {% block header %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/article/article_css.css' %}">
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.0.0/markdown-it.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.0.0/markdown-it.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var content = $('.content-markdown').val();
+            return markdown.toHTML( content )
+        });
+    </script>
     {% endblock %}
 {% load static %}
 {% bootstrap_css %}
@@ -18,16 +27,44 @@
             <div class="panel-heading"> 
                 <strong>Article Name &nbsp;</strong><span id="ys">{{ article.article_name }}</span>
             </div>   
-            <div class="panel-body">
-                <span id="content">{{ article.content }}</span>
+            <div class="panel-body content-markdown">
+                <span id="content">{{ article.content|linebreaks }}</span>
             </div>
             <div class="panel-footer">
                 <strong>Published On </strong>&nbsp;&nbsp;<span id="ys">{{ article.publ_date }}</span>&nbsp;&nbsp;<strong>By {{ article.author_name }}</strong>
+                Share on <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}/article/detail/2'>Google</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}/article/detail/2">
+            Facebook</a>
             </div>
         </div>
     </div>
     </div>
-    
+         
+    {% if comment %}
+        <div class="row">
+        {% for i in comment %}     
+            <div class="col sm-6">    
+                <div class="panel panel-default"> 
+                <div class="panel-heading">                           
+                    <strong>Commented by {{i.comment_name}} at {{ i.comment_date}}</strong>
+                </div>
+                    <div class="panel-body">
+                        <span>{{i.comment_content}}</span>
+                    </div>
+                </div>  
+            </div>
+            {% endfor %}
+        </div>        
+        {% else %}
+            <strong class="breadcrumb">No Comment's be first to add a Comment</strong>
+            <br />
+            <br />                          
+    {% endif %}      
+    <form action="" method="post" class="form-horizontal">
+                {% csrf_token %}
+                {% bootstrap_form form layout="inline" %}                
+                <button type="submit" class="btn btn-primary">ADD COMMENT</button>
+            </form>       
     </div>
    
 {% endblock %}

@@ -1,10 +1,12 @@
 MY_APPS =  [
+    'django.contrib.sites', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',    
+    'django_markdown',
     'student',
     'contact',
     'Article',    
@@ -13,5 +15,7 @@ MY_APPS =  [
     'corsheaders',
     'bootstrapform',
     'bootstrap3_datetime',
-    'sorl.thumbnail',    
-]
+    'sorl.thumbnail',   
+	'pagedown',         
+    
+ ]

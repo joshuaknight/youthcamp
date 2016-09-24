@@ -15,6 +15,10 @@ SECRET_KEY = secret.SECRET
 
 DEBUG = True
 
+MARKDOWN_EXTENSIONS = ['extra']
+
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = installed_apps.MY_APPS
@@ -44,6 +48,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#STATIC_ROOT = BASE_DIR + '/static'
+
 STATICFILES_FINDERS = ( 
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -52,7 +58,9 @@ STATICFILES_FINDERS = (
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
 ]
+
 
 MEDIA_ROOT = BASE_DIR + '/static/media'
 

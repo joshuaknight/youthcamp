@@ -1,22 +1,31 @@
 from django.forms import ModelForm,Textarea
 from django import forms
 from bootstrap3_datetime.widgets import DateTimePicker
-from Article.models import New_Article
+from Article.models import New_Article,Article_Comment
 from django.utils import timezone
+from pagedown.widgets import PagedownWidget
 
 class MyArticle(ModelForm):
 	class Meta:
 		model = New_Article
 		fields = '__all__'
+		exclude = ('publ_date','article_comment_key','slug')
 
 		widgets = {
-			'content' : Textarea(attrs = {'cols':50,'rows':10}),
-			'publ_date' : DateTimePicker(options={"format": "YYYY-MM-DD",
-																"pickTime": False})
+			'content' : PagedownWidget(attrs = {'cols':1,'rows':10})
 			}
 
-		inital = {
-			'publ_date' : timezone.now()
+		initals = {
+			'publ_date' : timezone.now(),
+
 		}			
 
 		
+class CommentForm(ModelForm):	
+	class Meta:
+		model = Article_Comment
+		fields = '__all__'		
+		exclude =  ('comment_date','slug','object_id')
+		widgets = {
+			'comment_content' : Textarea(attrs = {'cols':1,'rows':10}),
+		}
