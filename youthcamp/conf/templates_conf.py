@@ -1,7 +1,7 @@
 import os 
 
 #BASE_DIR = '/home/joshua/Desktop/youthcamp/'
-BASE_DIR = os.path.dirname(os.path.abspath('s'))
+BASE_DIR = os.path.abspath('')
 
 
 MY_TEMPLATE_CONF  = [
@@ -13,7 +13,6 @@ MY_TEMPLATE_CONF  = [
                 BASE_DIR + '/student/template',
                 BASE_DIR + '/Article/template',
                 BASE_DIR + '/Login/template',],
-
         #'/template',
          #       '/home/joshua/Desktop/youthcamp/template',],
         'APP_DIRS': True,

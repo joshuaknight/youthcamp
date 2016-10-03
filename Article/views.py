@@ -12,6 +12,7 @@ import datetime
 from django.core.paginator import *
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import *
+from django.db.models import Q 
 
 def get_page(request):
 	article_list = New_Article.objects.all().order_by('-id')
@@ -44,15 +45,43 @@ class article(FormView):
 		return reverse('display_article')
 
 class display_article(ListView):
-	template_name = "article_list.html"	
-	model = New_Article
+	template_name = "article_list.html"		
 	context_object_name = 'article'
 	paginate_by = 4
+
 
 	def get_context_data(self,*args,**kwargs):
 		context = super(display_article,self).get_context_data(*args,**kwargs)
 		context['page'] = get_page(self.request)
 		return context
+
+	def get_queryset(self):
+		try:	
+			q =  self.request.GET['q']								
+			if q:					
+				queryset = New_Article.objects.order_by('-id')
+				return queryset.filter(Q(author_name__icontains = q)|
+										Q(article_name__icontains = q))
+			else:
+				queryset = New_Article.objects.order_by('-id')
+				return queryset
+		except:
+			queryset = New_Article.objects.order_by('-id')
+			return queryset
+
+class reply_create(FormView):
+	template_name = "article_detail.html"
+	form_class = reply_comment_form
+	prefix = "reply_form"
+
+	def form_valid(self,form):
+		form.save()
+		return super(reply_create,self).form_valid(form)
+
+class reply_view(ListView):
+	template_name = "article_detail.html"
+	model = reply_comment
+	context_object_name = 'reply'
 
 
 
@@ -68,7 +97,7 @@ class article_comment(FormView):
 	def form_valid(self,form):			
 		my_val = self.kwargs['pk']		
 		comment = form.save(commit=False)
-		comment.object_id = my_val
+		comment.object_id = my_val			
 		comment.save()			
 		return super(article_comment,self).form_valid(form)
 
@@ -113,5 +142,9 @@ class article_delete(DeleteView):
 
 	def get_success_url(self):
 		return reverse('display_article')
+
+
+
+	
 
 	

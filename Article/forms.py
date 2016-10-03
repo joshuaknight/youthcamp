@@ -1,7 +1,7 @@
 from django.forms import ModelForm,Textarea
 from django import forms
 from bootstrap3_datetime.widgets import DateTimePicker
-from Article.models import New_Article,Article_Comment
+from Article.models import New_Article,Article_Comment,reply_comment
 from django.utils import timezone
 from pagedown.widgets import PagedownWidget
 
@@ -29,3 +29,8 @@ class CommentForm(ModelForm):
 		widgets = {
 			'comment_content' : Textarea(attrs = {'cols':1,'rows':10}),
 		}
+
+class reply_comment_form(ModelForm):
+	class Meta:
+		model = reply_comment
+		fields = '__all__'		

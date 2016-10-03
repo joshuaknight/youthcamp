@@ -45,7 +45,7 @@ class registered_list(ListView):
 	context_object_name = 'objects'
 	paginate_by = 4
 
-	def get_context_data(self,**kwargs):
+	def get_context_data(self,*args,**kwargs):
 		context = super(registered_list,self).get_context_data(**kwargs)
 		context['name_count'] = Registration.name_count.all()
 		context['men'] = Registration.men.all()

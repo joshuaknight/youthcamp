@@ -14,8 +14,7 @@ admin.autodiscover()
 urlpatterns = [
 	url(r'^$',home_page.as_view(),name = 'home'),
     
-    url(r'^admin/', admin.site.urls),
-    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^admin/', admin.site.urls),    
     
     url(r'^contact$',contact.as_view(),name = 'contact'),		
   
