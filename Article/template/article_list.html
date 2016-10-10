@@ -36,7 +36,7 @@
         <a href="{% url 'article_delete' i.id %}">{% bootstrap_icon 'remove' %}</a>
         </td>
 
-        <td><a href="">{{ i.author_name }}</a></td>     
+        <td><a href="{% url 'author_view' i.id %}">{{ i.author_name }}</a></td>     
     
         <td>{{ i.publ_date }}</td>
      </tr >

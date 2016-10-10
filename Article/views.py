@@ -146,5 +146,11 @@ class article_delete(DeleteView):
 
 
 	
+class author_view(DetailView):
+	template_name = 'author_detail.html'
+	slug_field = 'slug'	
+	context_object_name = 'author'
 
-	
+	def get_queryset(self,*args,**kwargs):
+		print self.kwargs['slug']
+		return New_Article.objects.get(author_name = self.kwargs['slug'])	

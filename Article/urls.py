@@ -10,7 +10,8 @@ urlpatterns = [
 		url(r'^delete/(?P<pk>\d+)/$',article_delete.as_view(),name = 'article_delete'),		
 		url(r'^detail/(?P<pk>\d+)/add/comment$',article_comment.as_view(),name = 'article_comment'),
 		url(r'^comment/reply/add$',reply_create.as_view(),name = 'reply_create'),
-		url(r'^comment/reply/view$',reply_view.as_view(),name = 'reply_view'),
+		url(r'^comment/reply/view$',reply_view.as_view(),name = 'reply_view'),		
+		url(r'^author/view/(?P<slug>[\w-]+)/*$',author_view.as_view(),name = 'author_view'),
 
 
 ]

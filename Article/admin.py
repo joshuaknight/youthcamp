@@ -1,5 +1,6 @@
-from django.contrib.admin import register
+from django.contrib import admin
 from Article.models import *
 
-register(New_Article)
-register(Article_Comment)
+admin.site.register(New_Article)
+admin.site.register(Article_Comment)
+#admin.site.register(Author_Detail)

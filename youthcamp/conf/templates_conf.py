@@ -1,7 +1,6 @@
 import os 
 
-#BASE_DIR = '/home/joshua/Desktop/youthcamp/'
-BASE_DIR = os.path.abspath('')
+BASE_DIR = '/home/joshua/Desktop/projects/youthcamp/'
 
 
 MY_TEMPLATE_CONF  = [

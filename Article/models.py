@@ -34,8 +34,11 @@ class ArticleManager(models.Manager):
 	def get_queryset(self):
 		return super(ArticleManager,self).get_queryset().values_list('article_name')
 
+
+
+
 class New_Article(models.Model):
-	author_name = models.CharField(max_length = 10,validators = [valid_name]) 
+	author_name = models.CharField(max_length = 20,validators = [valid_name]) 
 	slug = models.SlugField()
 	article_name = models.CharField(max_length=30,validators=[valid_name])	
 	content = models.CharField(max_length=20000,validators=[valid_content])
@@ -48,6 +51,10 @@ class New_Article(models.Model):
 		self.publ_date = timezone.now()		
 		self.slug = self.article_name				
 		return super(New_Article,self).save(*args,**kwargs)
+
+	def __str__(self):
+		return self.article_name		
+
 
 class Article_Comment(models.Model):
 	comment_name = models.CharField(max_length= 20,validators = [valid_name],verbose_name = "Your Name")	
